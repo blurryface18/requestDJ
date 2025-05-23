@@ -77,12 +77,12 @@ app.get('/requests/:djId', (req, res) => {
 });
 
 // Serve static client files (assuming your client build is in '../client/dist')
-// app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
-// // Catch-all route for client-side routing
-// app.get('*', (req, res) =>
-//   res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'))
-// );
+// Catch-all route for client-side routing
+app.get('*', (req, res) =>
+  res.sendFile(path.resolve(__dirname, '../client/dist/index.html'))
+);
 
 const PORT = process.env.PORT || 5001;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
