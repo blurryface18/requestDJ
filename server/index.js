@@ -81,7 +81,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // Catch-all route for client-side routing
 app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+  res.sendFile(path.resolve(__dirname, '../client/dist/index.html'))
 );
 
 const PORT = process.env.PORT || 5001;
