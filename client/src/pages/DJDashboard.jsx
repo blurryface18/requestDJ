@@ -5,13 +5,14 @@ import { useEffect, useRef, useState } from 'react';
 import { QRCodeCanvas } from 'qrcode.react';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5001');
+// const socket = io('https://requestdj-9sap.onrender.com');
 
 function DJDashboard() {
   const { djId } = useParams();
   const [requests, setRequests] = useState([]);
   const [djName, setDjName] = useState('');
   const qrRef = useRef();
+  const [socket, setSocket] = useState(null);
 
   const handleDownload = () => {
     const canvas = qrRef.current.querySelector('canvas');
@@ -25,6 +26,10 @@ function DJDashboard() {
   };
 
   useEffect(() => {
+
+    const newSocket = io('https://requestdj-9sap.onrender.com');
+    setSocket(newSocket);
+
     fetch(`/requests/${djId}`)
       .then(res => res.json())
       .then(setRequests);
@@ -33,14 +38,14 @@ function DJDashboard() {
       .then(res => res.json())
       .then(data => setDjName(data.name));
 
-    socket.on('new_request', (request) => {
+    newSocket.on('new_request', (request) => {
       if (request.djId === djId) {
         setRequests(prev => [...prev, request]);
       }
     });
 
     return () => {
-      socket.off('new_request');
+      newSocket.disconnect();
     };
   }, [djId]);
 
