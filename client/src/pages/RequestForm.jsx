@@ -1,46 +1,10 @@
-// import React, { useState } from 'react';
-// import { useParams } from 'react-router-dom';
-// import io from 'socket.io-client';
-
-// const socket = io('http://localhost:5001');
-
-// function RequestPage() {
-//   const { djId } = useParams();
-//   const [text, setText] = useState('');
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (text.trim()) {
-//       socket.emit('send_request', `${djId}: ${text}`);
-//       setText('');
-//     }
-//   };
-
-//   return (
-//     <div className="p-4">
-//       <h1 className="text-xl font-bold">Request a Song</h1>
-//       <form onSubmit={handleSubmit}>
-//         <input
-//           className="border p-2 w-full"
-//           value={text}
-//           onChange={e => setText(e.target.value)}
-//           placeholder="Enter song name..."
-//         />
-//         <button type="submit" className="bg-blue-500 text-white p-2 mt-2">Send Request</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default RequestPage;
-
 
 // client/src/pages/RequestForm.jsx
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 
-const socket = io('http://localhost:5001'); // ← local connection
+const socket = io('https://requestdj-9sap.onrender.com'); // ← local connection
 
 export default function RequestForm() {
   const { djId } = useParams();
@@ -58,7 +22,7 @@ export default function RequestForm() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5001/dj-name/${djId}`)
+    fetch(`https://requestdj-9sap.onrender.com/${djId}`)
       .then(res => res.json())
       .then(data => setDjName(data.name));
   }, [djId]);

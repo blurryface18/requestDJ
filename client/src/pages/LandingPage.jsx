@@ -10,7 +10,7 @@ function LandingPage() {
     if (!djName.trim()) return;
 
     const djId = uuidv4();
-    await fetch('http://localhost:5001/register-dj', {
+    await fetch('https://requestdj-9sap.onrender.com/register-dj', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ djId, name: djName })
