@@ -1,0 +1,17 @@
+{
+  "rewrites": [
+    {
+      "source": "/request/:djId",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/dj/:djId",
+      "destination": "/index.html"
+    },
+    {
+    
+    "source": "/(.*)",
+    "destination": "/index.html"
+    }
+  ]
+}
