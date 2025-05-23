@@ -56,7 +56,7 @@ function DJDashboard() {
           Share this QR code to receive song requests for <span className="font-semibold">{djName || 'your DJ name'}</span>:
         </p>
         <div className="inline-flex flex-col items-end bg-gray-100 p-4 rounded" ref={qrRef}>
-          <QRCodeCanvas value={`https://requestdj-9sap.onrender.com/${djId}`} size={200} />
+          <QRCodeCanvas value={`https://request-dj.vercel.app/request/${djId}`} size={200} />
           <button
             onClick={handleDownload}
             className="mt-4 bg-indigo-600 text-white font-semibold px-4 py-2 rounded hover:bg-indigo-700 transition self-end"
