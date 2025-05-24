@@ -22,7 +22,7 @@ export default function RequestForm() {
   };
 
   useEffect(() => {
-    fetch(`https://requestdj-9sap.onrender.com/${djId}`)
+    fetch(`https://requestdj-9sap.onrender.com/dj-name/${djId}`)
       .then(res => res.json())
       .then(data => setDjName(data.name));
   }, [djId]);
