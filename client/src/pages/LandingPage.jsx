@@ -5,6 +5,8 @@ import { useState } from 'react';
 function LandingPage() {
   const navigate = useNavigate();
   const [djName, setDjName] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   const handleCreateDJ = async () => {
     if (!djName.trim()) return;
@@ -16,7 +18,11 @@ function LandingPage() {
       body: JSON.stringify({ djId, name: djName })
     });
 
-    navigate(`/dj/${djId}`);
+    // navigate(`/dj/${djId}`);
+    setTimeout(() => {
+      navigate(`/dj/${djId}`);
+    }, 1000);
+    
   };
 
   return (
@@ -40,3 +46,7 @@ function LandingPage() {
 }
 
 export default LandingPage;
+
+
+
+
