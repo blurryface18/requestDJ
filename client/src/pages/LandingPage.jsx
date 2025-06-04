@@ -22,7 +22,7 @@ function LandingPage() {
     setTimeout(() => {
       navigate(`/dj/${djId}`);
     }, 1000);
-    
+
   };
 
   return (
@@ -35,12 +35,25 @@ function LandingPage() {
         onChange={(e) => setDjName(e.target.value)}
         className="p-3 rounded w-72 text-center text-black bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow"
       />
+
       <button
         onClick={handleCreateDJ}
-        className="bg-white text-indigo-600 font-bold py-3 px-6 rounded-xl shadow-lg hover:bg-gray-100"
+        disabled={loading}
+        className={`
+          bg-white text-indigo-600 font-bold py-3 px-6 rounded-xl shadow-lg transition-transform duration-200
+          ${clicked ? 'scale-95' : 'hover:scale-105 hover:bg-gray-100'}
+        `}
       >
-        Generate Your QR Code
+        {loading ? (
+          <div className="flex items-center justify-center gap-2">
+            <span className="w-4 h-4 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></span>
+            Generating...
+          </div>
+        ) : (
+          'Generate Your QR Code'
+        )}
       </button>
+      
     </div>
   );
 }
