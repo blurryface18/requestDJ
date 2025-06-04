@@ -11,6 +11,9 @@ function LandingPage() {
   const handleCreateDJ = async () => {
     if (!djName.trim()) return;
 
+    setClicked(true);     // Start animation
+    setLoading(true);     // Show loader
+
     const djId = uuidv4();
     await fetch('https://requestdj-9sap.onrender.com/register-dj', {
       method: 'POST',
@@ -53,7 +56,7 @@ function LandingPage() {
           'Generate Your QR Code'
         )}
       </button>
-      
+
     </div>
   );
 }
